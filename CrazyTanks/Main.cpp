@@ -9,6 +9,6 @@
 
 int main()
 {
-	cout << "All works." << endl;
+	cout << "Version 0.1" << endl;
 	system("pause");
 }
