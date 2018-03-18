@@ -3,14 +3,16 @@
 	Purpose: Declaration of the class Setup
 */
 #include "Definitions.h"
-#include "AbstractTank.h"
 #include "TankPlayer.h"
+#include "AbstractTank.h"
 #if !defined(__CrazyTanks_Setup_h)
 #define __CrazyTanks_Setup_h
 
 class Setup
 {
 public:
+	int GenerateMap();			// Empty map genering
+	int PlayersPlacing(AbstractTank&, AbstractTank&, AbstractTank&, AbstractTank&);		// Placing players on map
 	int DrawMap();				// Drawing a map
 	int GameStart();			// Starting a game
 	int GameOver();				// Game ending (loose)
@@ -23,8 +25,6 @@ public:
 	static Setup& SetupInstance();
 	
 	// Accessors
-	bool Getstop();
-	void Setstop(bool);
 	int GetmapHeight();
 	void SetmapHeight(int);
 	int GetmapWidth();
@@ -41,10 +41,10 @@ private:
 	// and copying additional incstances of class Setup
 	Setup& operator= (Setup const&) = delete;
 	
-	bool stop;
 	int mapWidth;
 	int mapHeight;
-	int playTime;	
+	int playTime;
+	char map[20][40];
 
 };
 

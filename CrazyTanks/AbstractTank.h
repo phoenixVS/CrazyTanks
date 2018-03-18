@@ -9,7 +9,7 @@
 class AbstractTank
 {
 public:
-	enum direcrion { Stop, LEFT, RIGHT, UP, DOWN };
+	enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
 
 	int Move();		// Tank's moving
 	int Shoot();	// Tank's shooting
@@ -20,24 +20,28 @@ public:
 	~AbstractTank();	// Destructor
 
 	// Accessors
+	int Getdir();
+	void Setdir(int);
 	int GetxPos();
 	void SetxPos(int);
 	int GetyPos();
 	void SetyPos(int);
 	int Gethp();
 	void Sethp(int);
-	string Getmodel();
-	void Setmodel(string);
-	string Gethitbox();
-	void Sethitbox(string);
+	char Getmodel(int, int);
+	void Setmodel(direction);
+	int Gethitbox(int, int);
+	void Sethitbox(direction);
 	string Getcolor();
 	void SetColor(string);
 protected:
+	
+	direction dir;
 	int xPos;
 	int yPos;
 	int hp;
-	string model;
-	string hitbox;
+	char model[2][3];
+	int hitbox[2][3];
 	string color;
 private:
 

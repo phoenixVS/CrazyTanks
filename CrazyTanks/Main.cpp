@@ -11,24 +11,37 @@
 
 int main()
 {
-	cout << "Version 0.4" << endl;
+	using namespace std::this_thread; // sleep_for, sleep_until
+	using namespace std::chrono; // nanoseconds, system_clock, seconds
+	system("color 70");
 	{
 		// Using a singleton pattern and static function
 		Setup& s = Setup::SetupInstance();
 		time_t start = time(NULL);
 		bool end = false;
 		while (!end)
-		{			
-			while (!s.Getstop())
+		{
+			int stop = 0;TankPlayer ptank;
+			TankAI ai1;
+			TankAI ai2;
+			TankAI ai3;
+			ptank.Setdir(0);
+			ai1.Setdir(0);
+			ai2.Setdir(0);
+			ai3.Setdir(0);
+			s.GenerateMap();			
+			while (!stop)
 			{
+				s.PlayersPlacing(ptank, ai1, ai2, ai3);
 				system("cls");
+				ptank.Move();
 				s.DrawMap();
-				TankPlayer ptank;
 				s.DrawTime(start);
 				s.DrawHp(ptank);
 				s.DrawScore(ptank);
+				sleep_for(nanoseconds(500000000));
 			}
-			if (s.Getstop() == 1)
+			if (stop == 1)
 				s.GameOver();
 			else
 				s.Victory();

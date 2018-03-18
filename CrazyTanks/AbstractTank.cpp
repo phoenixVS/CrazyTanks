@@ -7,15 +7,13 @@
 #include "AbstractTank.h"
 
 // Default constructor
-AbstractTank::AbstractTank() : xPos(0), yPos(0), hp(0), model(""), hitbox(""), color("")
+AbstractTank::AbstractTank() : xPos(0), yPos(0), hp(0), color("black")
 {
-
+	Setmodel(STOP);
 }
 // Destructor
 AbstractTank::~AbstractTank()
-{
-
-}
+{}
 
 // Accessors
 int AbstractTank::GetxPos()
@@ -42,21 +40,64 @@ void AbstractTank::Sethp(int Hp)
 {
 	hp = Hp;
 }
-string AbstractTank::Getmodel()
+char AbstractTank::Getmodel(int i, int j)
 {
-	return model;
+	return model[i][j];
 }
-void AbstractTank::Setmodel(string Model)
+void AbstractTank::Setmodel(direction dir)
 {
-	model = Model;
+	char center = 254, high = 219, top = 223, bot = 220;
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 3; j++)
+			model[i][j] = ' ';
+	if (dir == STOP || dir == LEFT)
+	{
+		model[0][1] = bot;
+		model[0][2] = bot;
+		model[1][0] = top;
+		model[1][1] = high;
+		model[1][2] = bot;
+	}
+	else
+	{
+		if (dir == RIGHT)
+		{
+			model[0][0] = bot;
+			model[0][1] = bot;
+			model[1][0] = bot;
+			model[1][1] = high;
+			model[1][2] = top;
+		}	
+		else
+		{
+			if (dir == UP)
+			{
+				model[0][1] = bot;
+				model[1][0] = high;
+				model[1][1] = top;
+				model[1][2] = high;
+			}
+			else
+			{
+				model[0][0] = bot;
+				model[0][2] = bot;
+				model[1][0] = top;
+				model[1][1] = high;
+				model[1][2] = top;
+			}
+		}
+	}
 }
-string AbstractTank::Gethitbox()
+int AbstractTank::Gethitbox(int i, int j)
 {
-	return hitbox;
+	return hitbox[i][j];
 }
-void AbstractTank::Sethitbox(string Hitbox)
+void AbstractTank::Sethitbox(direction dir)
 {
-	hitbox = Hitbox;
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 3; j++)
+			hitbox[i][j] = 1;
+	
 }
 string AbstractTank::Getcolor()
 {
@@ -66,11 +107,39 @@ void AbstractTank::SetColor(string Color)
 {
 	color = Color;
 }
+int AbstractTank::Getdir()
+{
+	return dir;
+}
+void AbstractTank::Setdir(int Dir)
+{
+	switch (Dir) 
+	{
+		case 0: { dir = STOP; break; }
+		case 1: { dir = LEFT; break; }
+		case 2: { dir = RIGHT; break; }
+		case 3: { dir = RIGHT; break; }
+		case 4: { dir = DOWN; break; }
+	}
+}
 
 // Tank's moving implementation
 int AbstractTank::Move()
 {
-	// TODO : implement
+	if(xPos < 35 && yPos < 16)
+	{
+	switch (dir) 
+	{
+	case UP: yPos++;
+		break;
+	case DOWN: yPos--;
+		break;
+	case RIGHT: xPos++;
+		break;
+	case LEFT: yPos--;
+		break;
+	}
+	}
 	return 0;
 }
 

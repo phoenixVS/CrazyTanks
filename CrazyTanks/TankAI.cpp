@@ -9,11 +9,9 @@
 // Default constructor
 TankAI::TankAI() : AbstractTank()
 {
-	xPos = 20;
-	yPos = 10;
+	xPos = rand()%36;
+	yPos = rand()%16;
 	hp = 1;
-	model = "";
-	hitbox = "";
 	color = "red";
 }
 // Destructor

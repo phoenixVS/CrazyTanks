@@ -6,6 +6,7 @@
 #include "Definitions.h"
 #include "Setup.h"
 #include "AbstractTank.h"
+#include "TankAI.h"
 #include "TankPlayer.h"
 
 // Singleton
@@ -15,21 +16,13 @@ Setup& Setup::SetupInstance()
 	return s;
 }
 // Constructor
-Setup::Setup() : stop(0), mapWidth(40), mapHeight(20), playTime(0)
+Setup::Setup() : mapHeight(20), mapWidth(40), playTime(0)
 {}
 // Destructor
 Setup::~Setup()
 {}
 
 // Accessors
-bool Setup::Getstop()
-{
-	return stop;
-}
-void Setup::Setstop(bool Stop)
-{
-	stop = Stop;
-}
 int Setup::GetmapHeight()
 {
 	return mapHeight;
@@ -54,33 +47,86 @@ void Setup::SetplayTime(int PlayTime)
 {
 	playTime = PlayTime;
 }
+// Empty map genering
+int Setup::GenerateMap()
+{
+	char luc = 201, ruc = 187, lbc = 200, rbc = 188, hwall = 205, vwall = 186;
+	for (int i = 0; i < 20; i++)
+		for (int j = 0; j < 40; j++)
+			map[i][j] = ' ';
+	for (int i = 0; i < mapWidth; i++)
+	{
+		map[0][i] = hwall;
+	}
+	for (int i = 0; i < mapHeight; i++)
+	{
+		map[i][0] = vwall;
+		map[i][mapWidth-1] = vwall;		
+	}
+	for (int i = 0; i < mapWidth; i++)
+	{
+		map[mapHeight-1][i] = hwall;
+	}
+	map[0][0] = luc;
+	map[0][mapWidth - 1] = ruc;
+	map[mapHeight - 1][0] = lbc;
+	map[mapHeight - 1][mapWidth - 1] = rbc;
+	return 0;
+}
+// Placing players on map
+int Setup::PlayersPlacing(AbstractTank& ptank, AbstractTank& en1, AbstractTank& en2, AbstractTank& en3)
+{
+	// Player placing
 
+	map[ptank.GetyPos() - 1][ptank.GetxPos() - 1] = ptank.Getmodel(0, 0);
+	map[ptank.GetyPos() - 1][ptank.GetxPos()]     = ptank.Getmodel(0, 1);
+	map[ptank.GetyPos() - 1][ptank.GetxPos() + 1] = ptank.Getmodel(0, 2);
 
+	map[ptank.GetyPos()][ptank.GetxPos() - 1]	  = ptank.Getmodel(1, 0);
+	map[ptank.GetyPos()][ptank.GetxPos()]		  = ptank.Getmodel(1, 1);
+	map[ptank.GetyPos()][ptank.GetxPos() + 1]	  = ptank.Getmodel(1, 2);
+
+	// Enemy 1 placing
+	map[en1.GetyPos() - 1][en1.GetxPos() - 1] = en1.Getmodel(0, 0);
+	map[en1.GetyPos() - 1][en1.GetxPos()] = en1.Getmodel(0, 1);
+	map[en1.GetyPos() - 1][en1.GetxPos() + 1] = en1.Getmodel(0, 2);
+
+	map[en1.GetyPos()][en1.GetxPos() - 1] = en1.Getmodel(1, 0);
+	map[en1.GetyPos()][en1.GetxPos()] = en1.Getmodel(1, 1);
+	map[en1.GetyPos()][en1.GetxPos() + 1] = en1.Getmodel(1, 2);
+	
+	// Enemy 2 placing
+	map[en2.GetyPos() - 1][en2.GetxPos() - 1] = en2.Getmodel(0, 0);
+	map[en2.GetyPos() - 1][en2.GetxPos()] = en2.Getmodel(0, 1);
+	map[en2.GetyPos() - 1][en2.GetxPos() + 1] = en2.Getmodel(0, 2);
+
+	map[en2.GetyPos()][en2.GetxPos() - 1] = en2.Getmodel(1, 0);
+	map[en2.GetyPos()][en2.GetxPos()] = en2.Getmodel(1, 1);
+	map[en2.GetyPos()][en2.GetxPos() + 1] = en2.Getmodel(1, 2);
+
+	// Enemy 3 placing
+	map[en3.GetyPos() - 1][en3.GetxPos() - 1] = en3.Getmodel(0, 0);
+	map[en3.GetyPos() - 1][en3.GetxPos()] = en3.Getmodel(0, 1);
+	map[en3.GetyPos() - 1][en3.GetxPos() + 1] = en3.Getmodel(0, 2);
+
+	map[en3.GetyPos()][en3.GetxPos() - 1] = en3.Getmodel(1, 0);
+	map[en3.GetyPos()][en3.GetxPos()] = en3.Getmodel(1, 1);
+	map[en3.GetyPos()][en3.GetxPos() + 1] = en3.Getmodel(1, 2);
+
+	return 0;
+}
 // Drawing a map
 int Setup::DrawMap()
 {
-	char luc = 201, ruc = 187, lbc = 200, rbc = 188, hwall = 205, vwall = 186;
-	cout << luc;
-	for (int i = 0; i < mapWidth-2; i++)
+	for (int i = 0; i < mapHeight; i++)
 	{
-		cout << hwall;
-	}
-	cout << ruc << endl;
-	for (int i = 0; i < mapWidth - 2; i++)
-	{
-		cout << vwall;
-		for (int j = 0; j < mapWidth - 2; j++)
+		for (int j = 0; j < mapWidth; j++)
 		{
-			cout << " ";
+			cout << map[i][j];
 		}
-		cout << vwall << endl;
+		cout << endl;
 	}
-	cout << lbc;
-	for (int i = 0; i < mapWidth - 2; i++)
-	{
-		cout << hwall;
-	}
-	cout << rbc << endl;
+	cout << endl;
 	return 0;
 }
 
@@ -88,6 +134,7 @@ int Setup::DrawMap()
 int Setup::GameStart()
 {
 	system("cls");
+	GenerateMap();
 	return 0;
 }
 
@@ -95,7 +142,7 @@ int Setup::GameStart()
 int Setup::GameOver()
 {
 	system("cls");
-	cout << "Game over" << endl;
+	cout << "	Game over" << endl;
 	return 0;
 }
 
@@ -103,7 +150,7 @@ int Setup::GameOver()
 int Setup::Victory()
 {
 	system("cls");
-	cout << "You win!!!" << endl;
+	cout << "	You win!!!" << endl;
 	return 0;
 }
 
@@ -120,7 +167,8 @@ int Setup::DrawTime(time_t start)
 	time_t counter;
 	int min = 0, sec = 0;
 	counter = time(NULL);
-	cout << "Time : ";
+	cout << "	Time : ";
+	SetplayTime(counter - start);
 	if (counter - start > 59)
 		min = (counter - start) % 60;
 	sec = counter - start - min * 60;
@@ -131,7 +179,7 @@ int Setup::DrawTime(time_t start)
 // Output player's Health Points
 int Setup::DrawHp(AbstractTank& ptank)
 {
-	cout << "HP left : ";
+	cout << "	HP left : ";
 	char hp1 = 178, hp2 = 176;
 	if (ptank.Gethp() == 3)
 	{
@@ -152,6 +200,6 @@ int Setup::DrawHp(AbstractTank& ptank)
 // Output player's score 
 int Setup::DrawScore(TankPlayer& ptank)
 {
-	cout << "Score : " << ptank.Getscore() << endl;
+	cout << "	Score : " << ptank.Getscore() << endl;
 	return 0;
 }
