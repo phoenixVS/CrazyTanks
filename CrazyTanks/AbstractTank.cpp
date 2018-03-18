@@ -44,13 +44,13 @@ char AbstractTank::Getmodel(int i, int j)
 {
 	return model[i][j];
 }
-void AbstractTank::Setmodel(direction dir)
+void AbstractTank::Setmodel(int d)
 {
 	char center = 254, high = 219, top = 223, bot = 220;
 	for (int i = 0; i < 2; i++)
 		for (int j = 0; j < 3; j++)
 			model[i][j] = ' ';
-	if (dir == STOP || dir == LEFT)
+	if (d == 0 || d == 4)
 	{
 		model[0][1] = bot;
 		model[0][2] = bot;
@@ -60,7 +60,7 @@ void AbstractTank::Setmodel(direction dir)
 	}
 	else
 	{
-		if (dir == RIGHT)
+		if (d == 3)
 		{
 			model[0][0] = bot;
 			model[0][1] = bot;
@@ -70,7 +70,7 @@ void AbstractTank::Setmodel(direction dir)
 		}	
 		else
 		{
-			if (dir == UP)
+			if (d == 2)
 			{
 				model[0][1] = bot;
 				model[1][0] = high;
@@ -116,29 +116,43 @@ void AbstractTank::Setdir(int Dir)
 	switch (Dir) 
 	{
 		case 0: { dir = STOP; break; }
-		case 1: { dir = LEFT; break; }
-		case 2: { dir = RIGHT; break; }
-		case 3: { dir = RIGHT; break; }
-		case 4: { dir = DOWN; break; }
+		case 1: { dir = DOWN; break; }
+		case 2: { dir = UP; break; }
+		case 3: { dir = LEFT; break; }
+		case 4: { dir = RIGHT; break; }
+		default: break;
 	}
 }
 
 // Tank's moving implementation
 int AbstractTank::Move()
 {
-	if(xPos < 35 && yPos < 16)
+	if(xPos < 35 && xPos > 0 && yPos < 16 && yPos > 0)
 	{
-	switch (dir) 
-	{
-	case UP: yPos++;
-		break;
-	case DOWN: yPos--;
-		break;
-	case RIGHT: xPos++;
-		break;
-	case LEFT: yPos--;
-		break;
+		switch (dir) 
+		{
+			case UP: SetyPos(yPos + 1);
+				if (!yPos < 16)
+					yPos--;
+				break;
+			case DOWN: SetyPos(yPos - 1);
+				if (!yPos > 0)
+					yPos++;
+				break;
+			case RIGHT: SetxPos(xPos + 1);
+				if (!xPos < 35)
+					xPos--;
+				break;
+			case LEFT: SetxPos(xPos - 1);
+				if (!xPos > 0)
+					xPos++;
+				break;
+			default: break;
+		}
 	}
+	else
+	{
+		Setdir(0);
 	}
 	return 0;
 }

@@ -9,7 +9,7 @@
 class AbstractTank
 {
 public:
-	enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
+	enum direction { STOP = 0, UP, DOWN, RIGHT, LEFT};
 
 	int Move();		// Tank's moving
 	int Shoot();	// Tank's shooting
@@ -29,7 +29,7 @@ public:
 	int Gethp();
 	void Sethp(int);
 	char Getmodel(int, int);
-	void Setmodel(direction);
+	void Setmodel(int);
 	int Gethitbox(int, int);
 	void Sethitbox(direction);
 	string Getcolor();

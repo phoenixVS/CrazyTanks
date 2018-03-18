@@ -78,40 +78,70 @@ int Setup::PlayersPlacing(AbstractTank& ptank, AbstractTank& en1, AbstractTank& 
 {
 	// Player placing
 
-	map[ptank.GetyPos() - 1][ptank.GetxPos() - 1] = ptank.Getmodel(0, 0);
-	map[ptank.GetyPos() - 1][ptank.GetxPos()]     = ptank.Getmodel(0, 1);
-	map[ptank.GetyPos() - 1][ptank.GetxPos() + 1] = ptank.Getmodel(0, 2);
+	map[ptank.GetyPos()][ptank.GetxPos()] = ptank.Getmodel(0, 0);
+	map[ptank.GetyPos()][ptank.GetxPos() + 1] = ptank.Getmodel(0, 1);
+	map[ptank.GetyPos()][ptank.GetxPos() + 2] = ptank.Getmodel(0, 2);
 
-	map[ptank.GetyPos()][ptank.GetxPos() - 1]	  = ptank.Getmodel(1, 0);
-	map[ptank.GetyPos()][ptank.GetxPos()]		  = ptank.Getmodel(1, 1);
-	map[ptank.GetyPos()][ptank.GetxPos() + 1]	  = ptank.Getmodel(1, 2);
+	map[ptank.GetyPos() + 1][ptank.GetxPos()] = ptank.Getmodel(1, 0);
+	map[ptank.GetyPos() + 1][ptank.GetxPos() + 1] = ptank.Getmodel(1, 1);
+	map[ptank.GetyPos() + 1][ptank.GetxPos() + 2] = ptank.Getmodel(1, 2);
 
+	// cleaning track
+	switch (ptank.Getdir())
+	{
+		case 1: 
+		{ 
+			map[ptank.GetyPos()-1][ptank.GetxPos()] = ' ';
+			map[ptank.GetyPos()-1][ptank.GetxPos() + 1] = ' ';
+			map[ptank.GetyPos()-1][ptank.GetxPos() + 2] = ' ';
+			break; 
+		}
+		case 2: 
+		{
+			map[ptank.GetyPos() + 2][ptank.GetxPos()] = ' ';
+			map[ptank.GetyPos() + 2][ptank.GetxPos() + 1] = ' ';
+			map[ptank.GetyPos() + 2][ptank.GetxPos() + 2] = ' ';
+			break; 
+		}
+		case 3: 
+		{ 
+			map[ptank.GetyPos()][ptank.GetxPos() - 1] = ' ';
+			map[ptank.GetyPos() + 1][ptank.GetxPos() - 1] = ' ';
+			break; 
+		}
+		case 4: 
+		{
+			map[ptank.GetyPos()][ptank.GetxPos() + 3] = ' ';
+			map[ptank.GetyPos() + 1][ptank.GetxPos() + 3] = ' ';
+			break; 
+		}
+	}
 	// Enemy 1 placing
-	map[en1.GetyPos() - 1][en1.GetxPos() - 1] = en1.Getmodel(0, 0);
-	map[en1.GetyPos() - 1][en1.GetxPos()] = en1.Getmodel(0, 1);
-	map[en1.GetyPos() - 1][en1.GetxPos() + 1] = en1.Getmodel(0, 2);
+	map[en1.GetyPos()][en1.GetxPos()] = en1.Getmodel(0, 0);
+	map[en1.GetyPos()][en1.GetxPos() + 1] = en1.Getmodel(0, 1);
+	map[en1.GetyPos()][en1.GetxPos() + 2] = en1.Getmodel(0, 2);
 
-	map[en1.GetyPos()][en1.GetxPos() - 1] = en1.Getmodel(1, 0);
-	map[en1.GetyPos()][en1.GetxPos()] = en1.Getmodel(1, 1);
-	map[en1.GetyPos()][en1.GetxPos() + 1] = en1.Getmodel(1, 2);
+	map[en1.GetyPos() + 1][en1.GetxPos()] = en1.Getmodel(1, 0);
+	map[en1.GetyPos() + 1][en1.GetxPos() + 1] = en1.Getmodel(1, 1);
+	map[en1.GetyPos() + 1][en1.GetxPos() + 2] = en1.Getmodel(1, 2);
 	
 	// Enemy 2 placing
-	map[en2.GetyPos() - 1][en2.GetxPos() - 1] = en2.Getmodel(0, 0);
-	map[en2.GetyPos() - 1][en2.GetxPos()] = en2.Getmodel(0, 1);
-	map[en2.GetyPos() - 1][en2.GetxPos() + 1] = en2.Getmodel(0, 2);
+	map[en2.GetyPos()][en2.GetxPos()] = en2.Getmodel(0, 0);
+	map[en2.GetyPos()][en2.GetxPos() + 1] = en2.Getmodel(0, 1);
+	map[en2.GetyPos()][en2.GetxPos() + 2] = en2.Getmodel(0, 2);
 
-	map[en2.GetyPos()][en2.GetxPos() - 1] = en2.Getmodel(1, 0);
-	map[en2.GetyPos()][en2.GetxPos()] = en2.Getmodel(1, 1);
-	map[en2.GetyPos()][en2.GetxPos() + 1] = en2.Getmodel(1, 2);
+	map[en2.GetyPos() + 1][en2.GetxPos()] = en2.Getmodel(1, 0);
+	map[en2.GetyPos() + 1][en2.GetxPos() + 1] = en2.Getmodel(1, 1);
+	map[en2.GetyPos() + 1][en2.GetxPos() + 2] = en2.Getmodel(1, 2);
 
 	// Enemy 3 placing
-	map[en3.GetyPos() - 1][en3.GetxPos() - 1] = en3.Getmodel(0, 0);
-	map[en3.GetyPos() - 1][en3.GetxPos()] = en3.Getmodel(0, 1);
-	map[en3.GetyPos() - 1][en3.GetxPos() + 1] = en3.Getmodel(0, 2);
+	map[en3.GetyPos()][en3.GetxPos()] = en3.Getmodel(0, 0);
+	map[en3.GetyPos()][en3.GetxPos() + 1] = en1.Getmodel(0, 1);
+	map[en3.GetyPos()][en3.GetxPos() + 2] = en1.Getmodel(0, 2);
 
-	map[en3.GetyPos()][en3.GetxPos() - 1] = en3.Getmodel(1, 0);
-	map[en3.GetyPos()][en3.GetxPos()] = en3.Getmodel(1, 1);
-	map[en3.GetyPos()][en3.GetxPos() + 1] = en3.Getmodel(1, 2);
+	map[en3.GetyPos() + 1][en3.GetxPos()] = en3.Getmodel(1, 0);
+	map[en3.GetyPos() + 1][en3.GetxPos() + 1] = en3.Getmodel(1, 1);
+	map[en3.GetyPos() + 1][en3.GetxPos() + 2] = en3.Getmodel(1, 2);
 
 	return 0;
 }

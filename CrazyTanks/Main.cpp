@@ -2,6 +2,7 @@
 	Main.cpp
 	Project Crazy Tanks, created by Valentine Shapoval
 */
+
 #include "Definitions.h"
 #include "AbstractTank.h"
 #include "Bullet.h"
@@ -39,7 +40,22 @@ int main()
 				s.DrawTime(start);
 				s.DrawHp(ptank);
 				s.DrawScore(ptank);
-				sleep_for(nanoseconds(500000000));
+				// Moving the tank
+				if (_kbhit())
+				{
+					switch (_getch()) {
+					case 72: ptank.Setdir(1); ptank.Setmodel(ptank.Getdir());
+						break;
+					case 80: ptank.Setdir(2); ptank.Setmodel(ptank.Getdir());
+						break;
+					case 75: ptank.Setdir(3); ptank.Setmodel(ptank.Getdir());
+						break;
+					case 77: ptank.Setdir(4); ptank.Setmodel(ptank.Getdir());
+						break;
+					default: break;
+					}
+				}
+				//sleep_for(nanoseconds(250000000));
 			}
 			if (stop == 1)
 				s.GameOver();

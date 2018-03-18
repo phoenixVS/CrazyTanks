@@ -1,3 +1,7 @@
 ﻿  AbstractTank.cpp
 e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(49): warning C4309: 'initializing': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(135): warning C4804: '<': unsafe use of type 'bool' in operation
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(139): warning C4804: '>': unsafe use of type 'bool' in operation
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(143): warning C4804: '<': unsafe use of type 'bool' in operation
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(147): warning C4804: '>': unsafe use of type 'bool' in operation
   CrazyTanks.vcxproj -> E:\Valentine\IT\Luxoft\CrazyTanks\CrazyTanks\Debug\CrazyTanks.exe
