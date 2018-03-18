@@ -11,9 +11,18 @@ TankPlayer::TankPlayer() : AbstractTank()
 	model = ""; 
 	hitbox = "";
 	color = "blue";
+	score = 0;
 }
 // Destructor
 TankPlayer::~TankPlayer()
-{
+{}
 
+// Accessors
+int TankPlayer::Getscore()
+{
+	return score;
+}
+void TankPlayer::Setscore(int Score)
+{
+	score = Score;
 }

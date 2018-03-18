@@ -1,8 +1,2 @@
-﻿  AbstractTank.cpp
-  Bullet.cpp
-  Main.cpp
-  Setup.cpp
-  TankAI.cpp
-  TankPlayer.cpp
-  Generating Code...
+﻿  Main.cpp
   CrazyTanks.vcxproj -> E:\Valentine\IT\Luxoft\CrazyTanks\CrazyTanks\Debug\CrazyTanks.exe

@@ -17,6 +17,19 @@ public:
 	AbstractTank();		// Default constructor
 	~AbstractTank();	// Destructor
 
+	// Accessors
+	int GetxPos();
+	void SetxPos(int);
+	int GetyPos();
+	void SetyPos(int);
+	int Gethp();
+	void Sethp(int);
+	string Getmodel();
+	void Setmodel(string);
+	string Gethitbox();
+	void Sethitbox(string);
+	string Getcolor();
+	void SetColor(string);
 protected:
 	int xPos;
 	int yPos;

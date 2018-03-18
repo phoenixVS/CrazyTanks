@@ -17,6 +17,56 @@ AbstractTank::~AbstractTank()
 
 }
 
+// Accessors
+int AbstractTank::GetxPos()
+{
+	return xPos;
+}
+void AbstractTank::SetxPos(int XPos)
+{
+	xPos = XPos;
+}
+int AbstractTank::GetyPos()
+{
+	return yPos;
+}
+void AbstractTank::SetyPos(int YPos)
+{
+	yPos = YPos;
+}
+int AbstractTank::Gethp()
+{
+	return hp;
+}
+void AbstractTank::Sethp(int Hp)
+{
+	hp = Hp;
+}
+string AbstractTank::Getmodel()
+{
+	return model;
+}
+void AbstractTank::Setmodel(string Model)
+{
+	model = Model;
+}
+string AbstractTank::Gethitbox()
+{
+	return hitbox;
+}
+void AbstractTank::Sethitbox(string Hitbox)
+{
+	hitbox = Hitbox;
+}
+string AbstractTank::Getcolor()
+{
+	return color;
+}
+void AbstractTank::SetColor(string Color)
+{
+	color = Color;
+}
+
 // Tank's moving implementation
 int AbstractTank::Move()
 {
