@@ -17,6 +17,9 @@ public:
 	int DrawTime();		// Output game time
 	int DrawHp();		// Output player's Health Points
 
+	Setup();			// Default constructor
+	~Setup();			// Destructor
+
 protected:
 private:
 	int mapWidth;

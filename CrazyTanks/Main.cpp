@@ -9,6 +9,9 @@
 
 int main()
 {
-	cout << "Version 0.1" << endl;
-	system("pause");
+	cout << "Version 0.2" << endl;
+	{
+		Setup s;
+	}
+	_getch();
 }

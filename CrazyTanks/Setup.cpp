@@ -5,6 +5,18 @@
 
 #include "Definitions.h"
 #include "Setup.h"
+
+// Default constructor
+Setup::Setup() : mapWidth(40), mapHeight(20), PlayTime(0)
+{
+
+}
+// Destructor
+Setup::~Setup()
+{
+
+}
+
 // Drawing a map
 int Setup::DrawMap()
 {

@@ -14,13 +14,17 @@ public:
 	int Hit();		// Tank is getting damage
 	int Miss();		// Tank missed
 
+	AbstractTank();		// Default constructor
+	~AbstractTank();	// Destructor
+
 protected:
-private:
 	int xPos;
 	int yPos;
 	int hp;
 	string model;
 	string hitbox;
+	string color;
+private:
 
 };
 

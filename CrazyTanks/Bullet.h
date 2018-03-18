@@ -11,6 +11,9 @@ class Bullet
 public:
 	int Flight();	// Bullet's flight
 
+	Bullet();	// Default constructor
+	~Bullet();	// Destructor
+
 protected:
 private:
 	int directions;

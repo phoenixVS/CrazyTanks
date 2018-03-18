@@ -6,6 +6,17 @@
 #include "Definitions.h"
 #include "AbstractTank.h"
 
+// Default constructor
+AbstractTank::AbstractTank() : xPos(0), yPos(0), hp(0), model(""), hitbox(""), color("")
+{
+
+}
+// Destructor
+AbstractTank::~AbstractTank()
+{
+
+}
+
 // Tank's moving implementation
 int AbstractTank::Move()
 {
