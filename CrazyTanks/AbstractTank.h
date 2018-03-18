@@ -9,6 +9,8 @@
 class AbstractTank
 {
 public:
+	enum direcrion { Stop, LEFT, RIGHT, UP, DOWN };
+
 	int Move();		// Tank's moving
 	int Shoot();	// Tank's shooting
 	int Hit();		// Tank is getting damage

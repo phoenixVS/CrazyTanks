@@ -10,7 +10,7 @@
 class TankPlayer : public AbstractTank
 {
 public:
-
+	
 	TankPlayer();	// Default constructor
 	~TankPlayer();	// Destructor
 
@@ -21,7 +21,6 @@ public:
 protected:
 private:
 	int score;
-
 };
 
 #endif

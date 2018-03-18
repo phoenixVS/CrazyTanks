@@ -1,5 +1,7 @@
-// Main.cpp
-// Project Crazy Tanks, created by Valentine Shapoval
+/* 
+	Main.cpp
+	Project Crazy Tanks, created by Valentine Shapoval
+*/
 #include "Definitions.h"
 #include "AbstractTank.h"
 #include "Bullet.h"
@@ -9,7 +11,7 @@
 
 int main()
 {
-	cout << "Version 0.2" << endl;
+	cout << "Version 0.4" << endl;
 	{
 		// Using a singleton pattern and static function
 		Setup& s = Setup::SetupInstance();
@@ -20,6 +22,7 @@ int main()
 			while (!s.Getstop())
 			{
 				system("cls");
+				s.DrawMap();
 				TankPlayer ptank;
 				s.DrawTime(start);
 				s.DrawHp(ptank);

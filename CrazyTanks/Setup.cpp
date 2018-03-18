@@ -59,7 +59,28 @@ void Setup::SetplayTime(int PlayTime)
 // Drawing a map
 int Setup::DrawMap()
 {
-	
+	char luc = 201, ruc = 187, lbc = 200, rbc = 188, hwall = 205, vwall = 186;
+	cout << luc;
+	for (int i = 0; i < mapWidth-2; i++)
+	{
+		cout << hwall;
+	}
+	cout << ruc << endl;
+	for (int i = 0; i < mapWidth - 2; i++)
+	{
+		cout << vwall;
+		for (int j = 0; j < mapWidth - 2; j++)
+		{
+			cout << " ";
+		}
+		cout << vwall << endl;
+	}
+	cout << lbc;
+	for (int i = 0; i < mapWidth - 2; i++)
+	{
+		cout << hwall;
+	}
+	cout << rbc << endl;
 	return 0;
 }
 
@@ -111,19 +132,19 @@ int Setup::DrawTime(time_t start)
 int Setup::DrawHp(AbstractTank& ptank)
 {
 	cout << "HP left : ";
-	char hpBlock = 178;
+	char hp1 = 178, hp2 = 176;
 	if (ptank.Gethp() == 3)
 	{
-		cout << hpBlock << hpBlock << hpBlock << endl;
+		cout << hp1 << hp1 << hp1 << endl;
 	}
 	else
 	{
 		if (ptank.Gethp() == 2)
 		{
-			cout << hpBlock << hpBlock << endl;
+			cout << hp1 << hp1 << hp2 << endl;
 		}
 		else
-			cout << hpBlock << endl;
+			cout << hp1 << hp2 << hp2 << endl;
 	}
 	return 0;
 }

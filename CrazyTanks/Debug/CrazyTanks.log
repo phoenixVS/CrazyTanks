@@ -1,2 +1,8 @@
 ﻿  Main.cpp
+  Setup.cpp
+e:\valentine\it\luxoft\crazytanks\crazytanks\setup.cpp(62): warning C4309: 'initializing': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\setup.cpp(126): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+e:\valentine\it\luxoft\crazytanks\crazytanks\setup.cpp(135): warning C4309: 'initializing': truncation of constant value
+  TankPlayer.cpp
+  Generating Code...
   CrazyTanks.vcxproj -> E:\Valentine\IT\Luxoft\CrazyTanks\CrazyTanks\Debug\CrazyTanks.exe
