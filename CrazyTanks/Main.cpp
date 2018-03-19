@@ -23,23 +23,24 @@ int main()
 		while (!end)
 		{
 			int stop = 0;TankPlayer ptank;
+			srand(time(NULL) + 1);
 			TankAI ai1;
+			srand(time(NULL) + 2);
 			TankAI ai2;
-			TankAI ai3;
 			ptank.Setdir(0);
 			ai1.Setdir(0);
 			ai2.Setdir(0);
-			ai3.Setdir(0);
 			s.GenerateMap();			
 			while (!stop)
 			{
-				s.PlayersPlacing(ptank, ai1, ai2, ai3);
+				s.PlayersPlacing(ptank, ai1, ai2);
 				system("cls");
-				ptank.Move();
-				s.DrawMap();
+				s.DrawMap(ptank, ai1, ai2);				
 				s.DrawTime(start);
 				s.DrawHp(ptank);
 				s.DrawScore(ptank);
+				ai1.Logic();
+				ai2.Logic();
 				// Moving the tank
 				if (_kbhit())
 				{
@@ -55,6 +56,7 @@ int main()
 					default: break;
 					}
 				}
+				ptank.Move();
 				//sleep_for(nanoseconds(250000000));
 			}
 			if (stop == 1)

@@ -47,9 +47,14 @@ void Setup::SetplayTime(int PlayTime)
 {
 	playTime = PlayTime;
 }
-// Empty map genering
+void Setup::Setmap(char ch, int i, int j)
+{
+	map[i][j] = ch;
+}
+// Empty map genering (with walls)
 int Setup::GenerateMap()
 {
+	srand(time(NULL));
 	char luc = 201, ruc = 187, lbc = 200, rbc = 188, hwall = 205, vwall = 186;
 	for (int i = 0; i < 20; i++)
 		for (int j = 0; j < 40; j++)
@@ -71,10 +76,46 @@ int Setup::GenerateMap()
 	map[0][mapWidth - 1] = ruc;
 	map[mapHeight - 1][0] = lbc;
 	map[mapHeight - 1][mapWidth - 1] = rbc;
+	
+	// Walls 1 x 2
+	int wone1x2[2][2], wtwo1x2[2][2], wthree1x2[2][2];
+	wone1x2[0][0] = rand() % 15 + 1;
+	wone1x2[0][1] = rand() % 35 + 1;
+	wone1x2[1][0] = wone1x2[0][0] + 1;
+	wone1x2[1][1] = wone1x2[0][1];
+	map[wone1x2[0][0]][wone1x2[0][1]] = vwall;
+	map[wone1x2[1][0]][wone1x2[1][1]] = vwall;
+
+	wtwo1x2[0][0] = rand() % 16 + 1;
+	wtwo1x2[0][1] = rand() % 36 + 1;
+	wtwo1x2[1][0] = wtwo1x2[0][0];
+	wtwo1x2[1][1] = wtwo1x2[0][1] -1;
+	map[wtwo1x2[0][0]][wtwo1x2[0][1]] = hwall;
+	map[wtwo1x2[1][0]][wtwo1x2[1][1]] = hwall;
+
+	wthree1x2[0][0] = rand() % 15 + 1;
+	wthree1x2[0][1] = rand() % 35 + 1;
+	wthree1x2[1][0] = wthree1x2[0][0];
+	wthree1x2[1][1] = wthree1x2[0][1] + 1;
+	map[wthree1x2[0][0]][wthree1x2[0][1]] = hwall;
+	map[wthree1x2[1][0]][wthree1x2[1][1]] = hwall;
+	
+	// Wall 1 x 3
+	int w1x3[3][2];
+	w1x3[0][0] = rand() % 15 + 1;
+	w1x3[0][1] = rand() % 35 + 1;
+	w1x3[1][0] = w1x3[0][0];
+	w1x3[1][1] = w1x3[0][1] + 1;
+	w1x3[2][0] = w1x3[0][0];
+	w1x3[2][1] = w1x3[0][1] + 2;
+	map[w1x3[0][0]][w1x3[0][1]] = hwall;
+	map[w1x3[1][0]][w1x3[1][1]] = hwall;
+	map[w1x3[2][0]][w1x3[2][1]] = hwall;
 	return 0;
-}
+};
+
 // Placing players on map
-int Setup::PlayersPlacing(AbstractTank& ptank, AbstractTank& en1, AbstractTank& en2, AbstractTank& en3)
+int Setup::PlayersPlacing(AbstractTank& ptank, AbstractTank& en1, AbstractTank& en2)
 {
 	// Player placing
 
@@ -90,7 +131,7 @@ int Setup::PlayersPlacing(AbstractTank& ptank, AbstractTank& en1, AbstractTank& 
 	switch (ptank.Getdir())
 	{
 		case 1: 
-		{ 
+		{   
 			map[ptank.GetyPos()-1][ptank.GetxPos()] = ' ';
 			map[ptank.GetyPos()-1][ptank.GetxPos() + 1] = ' ';
 			map[ptank.GetyPos()-1][ptank.GetxPos() + 2] = ' ';
@@ -125,6 +166,36 @@ int Setup::PlayersPlacing(AbstractTank& ptank, AbstractTank& en1, AbstractTank& 
 	map[en1.GetyPos() + 1][en1.GetxPos() + 1] = en1.Getmodel(1, 1);
 	map[en1.GetyPos() + 1][en1.GetxPos() + 2] = en1.Getmodel(1, 2);
 	
+	// cleaning track
+	switch (en1.Getdir())
+	{
+	case 1:
+	{
+		map[en1.GetyPos() - 1][en1.GetxPos()] = ' ';
+		map[en1.GetyPos() - 1][en1.GetxPos() + 1] = ' ';
+		map[en1.GetyPos() - 1][en1.GetxPos() + 2] = ' ';
+		break;
+	}
+	case 2:
+	{
+		map[en1.GetyPos() + 2][en1.GetxPos()] = ' ';
+		map[en1.GetyPos() + 2][en1.GetxPos() + 1] = ' ';
+		map[en1.GetyPos() + 2][en1.GetxPos() + 2] = ' ';
+		break;
+	}
+	case 3:
+	{
+		map[en1.GetyPos()][en1.GetxPos() - 1] = ' ';
+		map[en1.GetyPos() + 1][en1.GetxPos() - 1] = ' ';
+		break;
+	}
+	case 4:
+	{
+		map[en1.GetyPos()][en1.GetxPos() + 3] = ' ';
+		map[en1.GetyPos() + 1][en1.GetxPos() + 3] = ' ';
+		break;
+	}
+	}
 	// Enemy 2 placing
 	map[en2.GetyPos()][en2.GetxPos()] = en2.Getmodel(0, 0);
 	map[en2.GetyPos()][en2.GetxPos() + 1] = en2.Getmodel(0, 1);
@@ -134,20 +205,42 @@ int Setup::PlayersPlacing(AbstractTank& ptank, AbstractTank& en1, AbstractTank& 
 	map[en2.GetyPos() + 1][en2.GetxPos() + 1] = en2.Getmodel(1, 1);
 	map[en2.GetyPos() + 1][en2.GetxPos() + 2] = en2.Getmodel(1, 2);
 
-	// Enemy 3 placing
-	map[en3.GetyPos()][en3.GetxPos()] = en3.Getmodel(0, 0);
-	map[en3.GetyPos()][en3.GetxPos() + 1] = en1.Getmodel(0, 1);
-	map[en3.GetyPos()][en3.GetxPos() + 2] = en1.Getmodel(0, 2);
-
-	map[en3.GetyPos() + 1][en3.GetxPos()] = en3.Getmodel(1, 0);
-	map[en3.GetyPos() + 1][en3.GetxPos() + 1] = en3.Getmodel(1, 1);
-	map[en3.GetyPos() + 1][en3.GetxPos() + 2] = en3.Getmodel(1, 2);
-
+	// cleaning track
+	switch (en2.Getdir())
+	{
+	case 1:
+	{
+		map[en2.GetyPos() - 1][en2.GetxPos()] = ' ';
+		map[en2.GetyPos() - 1][en2.GetxPos() + 1] = ' ';
+		map[en2.GetyPos() - 1][en2.GetxPos() + 2] = ' ';
+		break;
+	}
+	case 2:
+	{
+		map[en2.GetyPos() + 2][en2.GetxPos()] = ' ';
+		map[en2.GetyPos() + 2][en2.GetxPos() + 1] = ' ';
+		map[en2.GetyPos() + 2][en2.GetxPos() + 2] = ' ';
+		break;
+	}
+	case 3:
+	{
+		map[en2.GetyPos()][en2.GetxPos() - 1] = ' ';
+		map[en2.GetyPos() + 1][en2.GetxPos() - 1] = ' ';
+		break;
+	}
+	case 4:
+	{
+		map[en2.GetyPos()][en2.GetxPos() + 3] = ' ';
+		map[en2.GetyPos() + 1][en2.GetxPos() + 3] = ' ';
+		break;
+	}
+	}
 	return 0;
 }
 // Drawing a map
-int Setup::DrawMap()
+int Setup::DrawMap(AbstractTank& ptank, AbstractTank& en1, AbstractTank& en2)
 {
+	// drawing
 	for (int i = 0; i < mapHeight; i++)
 	{
 		for (int j = 0; j < mapWidth; j++)

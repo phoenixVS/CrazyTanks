@@ -5,6 +5,7 @@
 
 #include "Definitions.h"
 #include "AbstractTank.h"
+#include "Setup.h"
 
 // Default constructor
 AbstractTank::AbstractTank() : xPos(0), yPos(0), hp(0), color("black")
@@ -129,29 +130,59 @@ int AbstractTank::Move()
 {
 	if(xPos < 35 && xPos > 0 && yPos < 16 && yPos > 0)
 	{
+		using namespace std::this_thread; // sleep_for, sleep_until
+		using namespace std::chrono; // nanoseconds, system_clock, seconds
+
 		switch (dir) 
 		{
-			case UP: SetyPos(yPos + 1);
-				if (!yPos < 16)
-					yPos--;
+			case UP: yPos++;
+				sleep_for(nanoseconds(500000000));
 				break;
-			case DOWN: SetyPos(yPos - 1);
-				if (!yPos > 0)
-					yPos++;
+			case DOWN: yPos--;
+				sleep_for(nanoseconds(500000000));
 				break;
-			case RIGHT: SetxPos(xPos + 1);
-				if (!xPos < 35)
-					xPos--;
+			case RIGHT: xPos++;
+				sleep_for(nanoseconds(250000000));
 				break;
-			case LEFT: SetxPos(xPos - 1);
-				if (!xPos > 0)
-					xPos++;
+			case LEFT: xPos--;
+				sleep_for(nanoseconds(250000000));
 				break;
 			default: break;
 		}
 	}
 	else
 	{
+		Setup& s = Setup::SetupInstance();
+		if (!(xPos < 35))
+		{
+			s.Setmap(186, xPos + 3, yPos + 0);
+			s.Setmap(186, xPos + 3, yPos + 1);
+			xPos--;
+			Setdir(0);
+		}
+		if (!(xPos > 0))
+		{
+			s.Setmap(186, xPos - 1, yPos);
+			s.Setmap(186, xPos - 1, yPos + 1);
+			xPos++;
+			Setdir(0);
+		}
+		if (!(yPos < 16))
+		{
+			s.Setmap(205, xPos, yPos + 2);
+			s.Setmap(205, xPos + 1, yPos + 2);
+			s.Setmap(205, xPos + 2, yPos + 2);
+			yPos--;
+			Setdir(0);
+		}
+		if (!(yPos > 0))
+		{
+			s.Setmap(205, xPos, yPos - 1);
+			s.Setmap(205, xPos + 1, yPos - 1);
+			s.Setmap(205, xPos + 2, yPos - 1);
+			yPos++;
+			Setdir(0);
+		}
 		Setdir(0);
 	}
 	return 0;

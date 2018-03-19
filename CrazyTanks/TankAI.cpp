@@ -9,8 +9,8 @@
 // Default constructor
 TankAI::TankAI() : AbstractTank()
 {
-	xPos = rand()%36;
-	yPos = rand()%16;
+	xPos = rand()%35 + 1;
+	yPos = rand()%15 + 1;
 	hp = 1;
 	color = "red";
 }

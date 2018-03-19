@@ -1,7 +1,13 @@
 ﻿  AbstractTank.cpp
-e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(49): warning C4309: 'initializing': truncation of constant value
-e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(135): warning C4804: '<': unsafe use of type 'bool' in operation
-e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(139): warning C4804: '>': unsafe use of type 'bool' in operation
-e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(143): warning C4804: '<': unsafe use of type 'bool' in operation
-e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(147): warning C4804: '>': unsafe use of type 'bool' in operation
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(50): warning C4309: 'initializing': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(158): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(159): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(165): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(166): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(172): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(173): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(174): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(180): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(181): warning C4309: 'argument': truncation of constant value
+e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(182): warning C4309: 'argument': truncation of constant value
   CrazyTanks.vcxproj -> E:\Valentine\IT\Luxoft\CrazyTanks\CrazyTanks\Debug\CrazyTanks.exe

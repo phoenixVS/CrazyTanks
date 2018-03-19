@@ -12,8 +12,8 @@ class Setup
 {
 public:
 	int GenerateMap();			// Empty map genering
-	int PlayersPlacing(AbstractTank&, AbstractTank&, AbstractTank&, AbstractTank&);		// Placing players on map
-	int DrawMap();				// Drawing a map
+	int PlayersPlacing(AbstractTank&, AbstractTank&, AbstractTank&);		// Placing players on map
+	int DrawMap(AbstractTank&, AbstractTank&, AbstractTank&);		// Drawing a map
 	int GameStart();			// Starting a game
 	int GameOver();				// Game ending (loose)
 	int Victory();				// Game ending (victory)
@@ -31,6 +31,7 @@ public:
 	void SetmapWidth(int);
 	int GetplayTime();
 	void SetplayTime(int);
+	void Setmap(char, int, int);
 
 protected:
 private:	
@@ -45,7 +46,7 @@ private:
 	int mapHeight;
 	int playTime;
 	char map[20][40];
-
+	int mapi[20][40];
 };
 
 #endif

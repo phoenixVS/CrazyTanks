@@ -8,7 +8,7 @@ TankPlayer::TankPlayer() : AbstractTank()
 {
 	Setup& s = Setup::SetupInstance();
 	xPos = s.GetmapWidth() / 2;
-	yPos = s.GetmapHeight() / 2;
+	yPos = -1 + s.GetmapHeight() / 2 ;
 	hp = 3;
 	color = "white";
 	score = 0;
