@@ -10,4 +10,6 @@ e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(174): warning C430
 e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(180): warning C4309: 'argument': truncation of constant value
 e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(181): warning C4309: 'argument': truncation of constant value
 e:\valentine\it\luxoft\crazytanks\crazytanks\abstracttank.cpp(182): warning C4309: 'argument': truncation of constant value
+  TankAI.cpp
+  Generating Code...
   CrazyTanks.vcxproj -> E:\Valentine\IT\Luxoft\CrazyTanks\CrazyTanks\Debug\CrazyTanks.exe
